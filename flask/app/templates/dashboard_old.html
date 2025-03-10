@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block css %}
+{{super()}}
+
+
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between mt-3">
+    <h1 class="mr-auto" id="devicename">Dashboard</h1>
+    <!-- 搜尋裝置 -->
+    <div class="pt-2 pr-5">
+        <div class="form-group row">
+            <label for="devicelist" class="col-sm-12 col-md-auto col-form-label">Device:</label>
+            <div class="col-sm-12 col-md-auto">
+                <select class="form-control" id="devicelist" onchange="switchDev(this.value)">
+                    {% for item in data['dataset'] %}
+                        {% if data['_id'] == item["_id"] %}
+                            <option value="{{ item["_id"] }}" selected>{{ item["device_name"] }}</option>
+                        {% else %}
+                            <option value="{{ item["_id"] }}">{{ item["device_name"] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<!-- Meter Card -->
+ <div class="row">
+    {% for meter in data['devices'][0]['list'] %}
+     <div class="col-sm-12 col-md-3">
+         <div class="card shadow my-3">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between login100-form-title-1">
+                <h6 class="m-0"><!--Revenue Sources-->{{ meter["name"] }}</h6>
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i> <!-- 顯示歷史圖表 -->
+            </div>
+             <div class="card-body">
+                 <div class="text-center h2">
+                     --
+                 </div>
+             </div>
+             <!--<div class="card-footer bg-white">2025/01/03 16:19:12</div>-->
+         </div>
+     </div>
+     {% endfor %}
+ </div>
+
+{% endblock %}
+
+<!-- package -->
+{% block librarys %}
+{{super()}}
+<script src="{{url_for('static', filename='js/socket.io.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/module/dashboard.js')}}"></script>
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+
+window.addEventListener('pageshow', (event) => { //
+
+});
+
+{% endblock %}

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMS 2.0</title>
+    <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+    {% block csslibrarys %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.4.6.2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    {% endblock %}
+    <style>
+    {% block css %}
+     /* Sidebar styles */
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: -320px; /* Hidden off-screen */
+      z-index: 1040; /* Ensure it's above the navbar */
+      background-color: #2e363e;
+      padding-top: 2rem; /* Offset for Navbar */
+      width: 20rem;
+      max-width: 20rem; /* Set the maximum width */
+      margin: 0 auto;   /* Center the container horizontally */
+    }
+
+    .sidebar-dark a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      display: block;
+    }
+
+    .sidebar-dark a:hover {
+    /*  background-color: #495057; */
+       color: white !important;
+    }
+
+    /* Sidebar open state */
+    .sidebar-open {
+       left: 0;
+    }
+
+    /* Overlay when sidebar is open */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1030; /* Just below the sidebar */
+      display: none;
+    }
+
+    .overlay-show {
+      display: block;
+    }
+
+   .collapse-item {
+        font-size: 1rem !important;
+        color: #2e363e !important;
+        display: block;
+    }
+
+    .collapse-item a:hover {
+      /*  color: #ffffff !important; */
+    }
+
+    .link-style {
+      color: #b6b4b4;
+      text-decoration: none;
+      font-weight: normal;
+      transition: color 0.3s, font-weight 0.3s;
+    }
+
+    /* 當懸停或聚焦時的樣式變化 */
+    .link-style:hover,
+    .link-style:focus {
+    /*  color: #d9534f;
+      font-weight: bold;
+      text-decoration: underline; */
+    }
+
+    /* card header */
+    .login100-form-title{
+        background-color: #2e363e!important;
+    }
+
+    /* 按鈕 */
+    .login100-form-title-1{
+        background-color: #4b5861!important;
+        color: white;
+    }
+
+    .btn-success{
+        background-color: #169567!important;
+        color: white;
+        border:#169567 0px solid;
+    }
+
+    .btn-danger{
+        background-color: #e74a3b!important;
+        color: white;
+        border:#e74a3b 0px solid;
+    }
+
+    .sidebar-dark a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      display: block;
+    }
+
+    .sidebar-dark a:hover {
+     /* background-color: #495057; */
+      color: #b6b4b4 !important;
+    }
+
+    /* 版本號 */
+    .version-container {
+        display: flex; /* Enables Flexbox */
+        align-items: center; /* Vertically aligns items in the center */
+        color: #b6b4b4; /* Text color */
+        font-size: 16px; /* Font size for text */
+        font-weight:400;
+    }
+
+    .version-container .icon-link {
+        display: inline-block;
+        text-decoration: none; /* 移除下劃線 */
+        margin-left: 10px; /* 調整圖標間距 */
+        color: #b6b4b4; /* Text color */
+    }
+
+    .version-container .icon-link {
+        display: block; /* 確保圖片內部不受空隙影響 */
+        color: #b6b4b4; /* Text color */
+    }
+
+    /* 去除鼠標 hover 時的背景色 */
+    .version-container .icon-link:hover {
+        background-color: transparent; /* 清除背景色 */
+        color: #b6b4b4; /* Text color */
+    }
+
+    .text-white{
+        color: #b6b4b4 !important;
+    }
+
+    #content{
+       /* border:#ff0000 0px solid;
+        background-color: #92a8d1;*/
+        max-width: 90vw!important;
+    }
+
+    {% endblock %}
+   </style>
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-between">
+
+     <!-- Left Side: Toggler + Brand -->
+    <div class="d-flex align-items-center">
+        <!-- Navbar Toggler Icon (Always Visible) -->
+        <button class="navbar-toggler mr-3" type="button" id="sidebarToggle">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Brand (Title) -->
+        <a class="navbar-brand" href="#">EMS 2.0</a>
+    </div>
+    <div class="dropdown">
+        <!-- Right Side: Username -->
+        <span class="mr-1 text-white nowtime">2025-02-11 14:24:30,</span>
+        <a class="nav-link dropdown-toggle d-inline link-style" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <strong>John Doe</strong>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#">Language</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Logout</a> <!-- **這邊填url -->
+        </div>
+          <!--<span class="navbar-text ml-auto h5">2025-02-11 18:12:01, <strong>John Doe</strong></span>-->
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<!--<div id="sidebar" class="sidebar">-->
+ <ul class="navbar-nav sidebar sidebar-dark accordion" id="sidebar">
+        <!-- Nav Item - 裝置管理 -->
+         <li class="nav-item ">
+             {% if data['sceneList'] | length == 0 %}
+             <div class="row justify-content-around">
+                <a href="javascript:void(0)" class="link-style d-inline">Dashboard</a> <!-- ** href 填入url -->
+                <a href="javascript:void(0)" class="d-inline link-style" onclick="newPage()"><i class="fa fa-plus" aria-hidden="true"></i></a> <!-- ** href 填入url -->
+             </div>
+             {% elif data['sceneList'] | length != 0 %}
+             <div class="row justify-content-around">
+                 <a class="dropdown-toggle link-style" id="collapseButton1" href="#collapseScene" data-toggle="collapse" aria-expanded="false">Dashboard</a>
+                 <a href="javascript:void(0)" class="d-inline link-style" onclick="newPage()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+             </div>
+             <div id="collapseScene" class="collapse show">
+                 <div class="bg-white py-1 collapse-inner rounded">
+                     {% for item in data['sceneList'] %}
+                     <a class="collapse-item pl-5 active" href="">{{ item["scene"] }}</a>
+                     {% endfor %}
+                    <!-- <a class="collapse-item pl-5 active" href="">帳號管理</a>
+                     <a class="collapse-item pl-5" href="">MQTT伺服器設定</a>
+                     <a class="collapse-item pl-5" href="">Serial設定</a>-->
+                 </div>
+             </div>
+            {% endif %}
+         </li>
+         <li class="nav-item">
+             <a href="javascript:void(0)" class="link-style pl-5">報表分析</a>
+         </li>
+         <li class="nav-item">
+             <a class="dropdown-toggle link-style pl-5" id="collapseButton" href="#collapseTwo" data-toggle="collapse" aria-expanded="false">系統管理</a>
+             <div id="collapseTwo" class="collapse show">
+                 <div class="bg-white py-1 collapse-inner rounded">
+                     <a class="collapse-item pl-5 active" href="">設備管理</a>
+                     <a class="collapse-item pl-5 active" href="">帳號管理</a>
+                    <!-- <a class="collapse-item pl-5" href="">MQTT伺服器設定</a>
+                     <a class="collapse-item pl-5" href="">Serial設定</a>-->
+                 </div>
+             </div>
+         </li>
+        <!-- Divider -->
+        <li>
+            <span class="d-flex justify-content-center h6 my-3 version-container" >
+                Version: <span class="version mx-2 mr-4"></span>
+                <!--<a href="xxx" class="icon-link"><i class="fa fa-sign-out" aria-hidden="true"></i></a>-->
+            </span>
+        </li>
+ </ul>
+
+
+<!-- Overlay -->
+<div id="overlay" class="overlay"></div>
+ <!-- Container -->
+    <div class="container mt-3" id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- Modal 彈跳視窗-->
+  <div class="modal fade" id="showModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header login100-form-title text-white">
+          <h5 class="modal-title" id="ModalLabel"><!--Ready to Leave?--></h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body body-content"></div>
+        <div class="modal-footer footer-content"></div>
+      </div>
+    </div>
+  </div>
+
+    {% block librarys %}
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.4.6.2.min.js')}}"></script>
+    {% endblock %}
+
+    <script>
+    {% block scripts %}
+        // 取得現在時間
+        function getNowToday(){
+          var now=new Date();//生成日期物件(完整的日期資訊)
+          var y=now.getFullYear();//年份
+          var M=now.getMonth()+1>9?now.getMonth()+1:'0'+(now.getMonth()+1); //月份
+          var d=now.getDate()>9?now.getDate():'0'+now.getDate();//日期
+          var h=now.getHours()>9?now.getHours():'0'+now.getHours();//小時
+          var m=now.getMinutes()>9?now.getMinutes():'0'+now.getMinutes();//分鐘
+          var s=now.getSeconds()>9?now.getSeconds():'0'+now.getSeconds();
+          var currentdate = y+'-'+M+'-'+d+' '+h+':'+m+':'+s;
+
+          return currentdate;
+        }
+
+        //送到後端程式
+        function postfun(url,param){
+            $('button').prop("disabled", true); //按鈕關閉
+
+            fetch(url, {
+                method: 'POST',
+                headers: {'Content-Type': "application/json"},
+                body: JSON.stringify(param),
+            }).then((response) => {
+                return response.json();
+            }).then((jsonData) => {  //完成時
+                console.log(jsonData);
+                alert(''+jsonData.status);
+                location.reload();
+            }).catch((err) => {
+                console.log(err);
+                alert('The Property Update Faile');
+                $('#showModal').modal('toggle');     //關閉Modal
+                $('button').prop("disabled", false); //按鈕關閉
+            });
+        }
+
+        //建立新頁面彈跳視窗
+        function newPage(){
+            $('#ModalLabel').text('Create New Scene');
+            let str = '<form>';
+                str += '<div class="form-row d-flex justify-content-center">';
+                //Scene Name欄位
+                str += '<div class="form-group col-12">';
+                str += '<label for="scene">Scene Name:</label>';
+                str += '<input type="text" id="scene" class="form-control" value="" >';
+                str += '</div>';
+                //Tag Name欄位
+                /*
+                str += '<div class="form-group col-12">';
+                str += '<label for="tag">Tag Name:</label>';
+                str += '<input type="text" id="tag" class="form-control" value="" >';
+                str += '</div>';
+                */
+                str += '</div>';
+                str += '</form>';
+
+            $('.body-content').html(str);
+            $('.footer-content').html("<button type='button' class='btn btn-secondary login100-form-title text-white' onClick=\"actcreatePage()\">OK</button><button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>");
+
+            $('#showModal').modal({backdrop: 'static', keyboard: false});
+        }
+
+        // 新增新場景
+        function actcreatePage(){
+            let scene = $('#scene').val();
+            //console.log(scene);
+
+            let url = '***';  //**填入API
+            let param = {"scene": scene}
+
+            if(scene == ''){
+                alert('Please fill in required data.');
+            }
+            else{
+                postfun(url, param);
+            }
+        }
+
+        $(document).ready(function() {
+            // Toggle sidebar and overlay
+            $('#sidebarToggle').click(function() {
+              $('#sidebar').toggleClass('sidebar-open');
+              $('#overlay').toggleClass('overlay-show');
+            });
+
+            // Close sidebar when clicking outside
+            $('#overlay').click(function() {
+              $('#sidebar').removeClass('sidebar-open');
+              $(this).removeClass('overlay-show');
+            });
+
+            //顯示版本
+            fetch('{{url_for('static', filename='version.json')}}')
+            .then(response => {
+              // 檢查是否成功取得檔案
+              if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+              }
+              return response.json();
+            })
+            .then(data => {
+              // 解析後的 JSON 資料
+              //console.log(data);
+              $('.version').text(data['version']);
+            })
+            .catch((error) => {
+                console.log(`Error: ${error}`);
+            });
+
+            //取得現在時間,每秒更新一次
+            setInterval(function () {
+                $('.nowtime').text(getNowToday());
+            }, 1000);
+        });
+
+    {% endblock %}
+    </script>
+</body>
+</html>

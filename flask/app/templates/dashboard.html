@@ -1,0 +1,531 @@
+{% extends "base.html" %}
+
+{% block csslibrarys %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/gridstack.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/leaflet.css')}}">
+{% endblock %}
+
+{% block css %}
+{{super()}}
+.floor-title {
+    font-size: 2.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.floor-title::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 30px;
+    background-color: #2e363e;
+    margin-right: 8px;
+}
+.room-button {
+    border-radius: 20px;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+}
+.btn-primary {
+    background-color: #2e363e;
+    border-color: #2e363e;
+    color: white;
+}
+.btn-outline-primary {
+    color: #2e363e;
+    border-color: #2e363e;
+}
+.more-options {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary:hover, .btn-outline-primary:hover{
+    background-color: #2e363e;
+    border-color: #2e363e;
+    color: white;
+}
+
+/* 純數值 */
+.auto-resize-text {
+    font-size: clamp(24px, 8vw, 5rem); /* 文字大小最小 20px，最大 5rem，根據容器縮放 */
+    /* font-weight: bold; */
+    text-align: center;
+    white-space: nowrap; /* 防止換行 */
+}
+
+.unit-text {
+    font-size: clamp(18px, 5vw, 3rem); /* 文字大小最小 20px，最大 5rem，根據容器縮放 */
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+/* Toggle Switch Button CSS */
+.btn-toggle {
+  margin: 0 4rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1.5rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+  color: #6b7381;
+  background: #bdc1c8;
+}
+.btn-toggle:focus,
+.btn-toggle.focus,
+.btn-toggle:focus.active,
+.btn-toggle.focus.active {
+  outline: none;
+}
+.btn-toggle:before,
+.btn-toggle:after {
+  line-height: 1.5rem;
+  width: 4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle:before {
+  content: 'Off';
+  left: -4rem;
+}
+.btn-toggle:after {
+  content: 'On';
+  right: -4rem;
+  opacity: 0.5;
+}
+.btn-toggle > .handle {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 1.125rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.active > .handle {
+  left: 1.6875rem;
+  transition: left 0.25s;
+}
+.btn-toggle.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.active:after {
+  opacity: 1;
+}
+
+.btn-toggle.btn-xs:before,
+.btn-toggle.btn-xs:after {
+  display: none;
+}
+.btn-toggle:before,
+.btn-toggle:after {
+  color: #6b7381;
+}
+.btn-toggle.active {
+  background-color: #29b5a8;
+}
+.btn-toggle.btn-lg {
+  margin: 0 5rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 2.5rem;
+}
+.btn-toggle.btn-lg:focus,
+.btn-toggle.btn-lg.focus,
+.btn-toggle.btn-lg:focus.active,
+.btn-toggle.btn-lg.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-lg:before,
+.btn-toggle.btn-lg:after {
+  line-height: 2.5rem;
+  width: 5rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle.btn-lg:before {
+  content: 'Off';
+  left: -5rem;
+}
+.btn-toggle.btn-lg:after {
+  content: 'On';
+  right: -5rem;
+  opacity: 0.5;
+}
+.btn-toggle.btn-lg > .handle {
+  position: absolute;
+  top: 0.3125rem;
+  left: 0.3125rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 1.875rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-lg.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-lg.active > .handle {
+  left: 2.8125rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-lg.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-lg.active:after {
+  opacity: 1;
+}
+
+.btn-toggle.btn-lg.btn-xs:before,
+.btn-toggle.btn-lg.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-xs {
+  margin: 0 0;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1rem;
+  width: 2rem;
+  border-radius: 1rem;
+}
+.btn-toggle.btn-xs:focus,
+.btn-toggle.btn-xs.focus,
+.btn-toggle.btn-xs:focus.active,
+.btn-toggle.btn-xs.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-xs:before,
+.btn-toggle.btn-xs:after {
+  line-height: 1rem;
+  width: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle.btn-xs:before {
+  content: 'Off';
+  left: 0;
+}
+.btn-toggle.btn-xs:after {
+  content: 'On';
+  right: 0;
+  opacity: 0.5;
+}
+.btn-toggle.btn-xs > .handle {
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-xs.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-xs.active > .handle {
+  left: 1.125rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-xs.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-xs.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-xs.btn-xs:before,
+.btn-toggle.btn-xs.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-secondary {
+  color: #6b7381;
+  background: #bdc1c8;
+}
+.btn-toggle.btn-secondary:before,
+.btn-toggle.btn-secondary:after {
+  color: #6b7381;
+}
+.btn-toggle.btn-secondary.active {
+  background-color: #ff8300;
+}
+
+#map { width: 100vw; height: 80vh; border: 1px solid #ccc; }
+
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-start">
+    <div>
+        <!-- 標題 -->
+        <div class="floor-title d-flex align-items-center">
+            {{ data['page']['scene'] }}
+            <span class="h5"><i class="fa fa-pencil-square-o mx-3" aria-hidden="true" onclick="editPage()" style="cursor: pointer;"></i></span>
+        </div>
+    </div>
+    <!-- 編輯按鈕 -->
+    <!--
+    <button class="more-options mt-2">
+        <i class="fa fa-ellipsis-h" aria-hidden="true" style="font-size: 1.5rem"></i>
+    </button>
+    -->
+    <div class="d-flex flex-row align-items-center">
+        <button class="btn btn-outline-primary room-button mx-2 mt-2" onclick="createTabs('{{ data['page']['_id'] }}')">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            新增頁籤
+        </button>
+        <button class="btn btn-outline-primary room-button mx-2 mt-2" onclick="">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            新增Widget
+        </button>
+        <!-- 更多選項按鈕 -->
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle more-options" type="button" id="moreOptionsDropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-h"></i>
+            </button>
+            <!-- Dropdown 選單 -->
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreOptionsDropdown">
+                <a class="dropdown-item" href="#">編輯模式</a>
+                <a class="dropdown-item" href="javascript:void(0)" onclick="confirmDelModal('{{ data['page']['_id'] }}')">刪除頁面</a>
+                <!--<a class="dropdown-item" href="#">分享</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 頁籤列表 -->
+<div class="row">
+    {% for item in data['tabs'] %}
+    {% if item['_id'] == data['specifytab']['_id'] %} <!-- 切換頁面的時候, 按鈕指定 class 名稱為 btn-primary, 其餘名稱為 btn-outline-primary -->
+    <div class="col-lg-1 col-md-2 col-sm-12">
+        <button class="btn btn-primary room-button mx-2 mt-2" onclick="direction(event, '{{ item['_id'] }}')">{{ item['name'] }} <!-- 圖示按鈕，阻止事件冒泡，點擊開啟 Modal -->
+        <span class="icon-container" onclick="editTabs(event, JSON.stringify({{ item }}))">
+            <i class="fa fa-ellipsis-h"></i>
+        </span>
+        </button>
+    </div>
+    {% else %}
+    <div class="col-lg-1 col-md-2 col-sm-12">
+        <button class="btn btn-outline-primary room-button mx-2 mt-2" onclick="direction(event, '{{ item['_id'] }}')">{{ item['name'] }} <!-- 圖示按鈕，阻止事件冒泡，點擊開啟 Modal -->
+        <span class="icon-container" onclick="editTabs(event, JSON.stringify({{ item }}))">
+            <i class="fa fa-ellipsis-h"></i>
+        </span></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<hr>
+<!-- GridStack 容器 -->
+<div class="grid-stack" style="border: 0px solid #ff0000;"></div>
+
+{% endblock %}
+
+<!-- package -->
+{% block librarys %}
+{{super()}}
+<script src="{{url_for('static', filename='js/gridstack-all.js')}}"></script>
+<script src="{{url_for('static', filename='js/chart.js')}}"></script>
+<script src="{{url_for('static', filename='js/chartjs-plugin-datalabels.js')}}"></script>
+<script src="{{url_for('static', filename='js/leaflet.js')}}"></script>
+<script src="{{url_for('static', filename='js/module/dashboard.js')}}"></script>
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+// 啟用 chartjs-plugin-datalabels
+Chart.register(ChartDataLabels);
+
+var data = {{ data['page'] | tojson }}; //取出目前Scene 資訊, 轉成JSON格式
+//console.log(data);
+
+
+window.addEventListener('pageshow', (event) => { //
+    console.log('ready');
+    // 初始化 GridStack
+    const grid = GridStack.init({
+        column: 12, // 12 列的網格
+        cellHeight: 'auto',
+        disableOneColumnMode: false, // 小螢幕時允許 1 列模式
+        float: true,
+        zoomSnap: 3,
+        //resizable: true,
+        draggable: true,
+        resizable: { handles: "e, se, s, sw, w" }, // 允許調整大小
+    });
+
+    // 預設載入的 GridStack 項目, data Point
+    // 從後端資料取出
+    // type: 1. 長條圖, 2. 折線圖, 3. 多項折線圖, 4/5. 全/空心圓餅圖, 6. 半圓餅圖, 0. 純文字, 7. 控制元件, 8. 地圖
+    // property 可加入顏色 HEX 值
+    let initialItems = [
+        { w: 6, h: 3, title: '電壓', id: '67b57b55839cf7f31f9f913b', type: 1, dataset: [{xlabel: 'A', yValue: 12}, {xlabel: 'B', yValue: 19}, {xlabel: 'C', yValue: 3}, {xlabel: 'D', yValue: 5}, {xlabel: 'E', yValue: 2}], lab: 'V'},
+        { w: 2, h: 3, title: '電流', id: '67b57bad839cf7f31f9f913c', type: 1, dataset: [{xlabel: 'A', yValue: 12}, {xlabel: 'B', yValue: 19}, {xlabel: 'C', yValue: 3}, {xlabel: 'D', yValue: 5}, {xlabel: 'E', yValue: 2}], lab: 'A'},
+        { w: 2, h: 3, title: '溫度', id: '67b57bba839cf7f31f9f913f', type: 1, dataset: [{xlabel: 'A', yValue: 12}, {xlabel: 'B', yValue: 19}, {xlabel: 'C', yValue: 3}, {xlabel: 'D', yValue: 5}, {xlabel: 'E', yValue: 2}], lab: '度'},
+        { w: 2, h: 3, title: '濕度', id: '67b57bdd839cf7f31f9f9144', type: 1, dataset: [{xlabel: 'A', yValue: 12}, {xlabel: 'B', yValue: 19}, {xlabel: 'C', yValue: 3}, {xlabel: 'D', yValue: 5}, {xlabel: 'E', yValue: 2}], lab: '%'},
+        { w: 6, h: 3, title: 'kWh', id: '67b57bdd839cf7f31f9f924b', type: 2, dataset: [{xlabel: 'A', yValue: 12}, {xlabel: 'B', yValue: 19}, {xlabel: 'C', yValue: 3}, {xlabel: 'D', yValue: 5}, {xlabel: 'E', yValue: 2}], lab: 'kWh'},
+        { w: 6, h: 3, title: 'kWh', id: '67b57b55839cf7f31f9f932b', type: 3, dataset: [{label: '# tag1', data: [{xlabel: 'A', yValue: 12}, {xlabel: 'B', yValue: 19}, {xlabel: 'C', yValue: 3}, {xlabel: 'D', yValue: 5}, {xlabel: 'E', yValue: 2}] }, {label: '# tag2', data: [{xlabel: 'A', yValue: 7}, {xlabel: 'B', yValue: 11}, {xlabel: 'C', yValue: 5}, {xlabel: 'D', yValue: 8}, {xlabel: 'E', yValue: 3}] }] },
+        { w: 3, h: 3, title: '狀態', id: '67b57bad839cf7f31f9f933d', type: 4, dataset: [{xlabel: 'OK', yValue: 12, color: '#ff6384'}, {xlabel: 'WARNING', yValue: 19, color: '#36a2eb'}, {xlabel: 'CRITICAL', yValue: 3, color: '#ffce56'}, {xlabel: 'UNKNOWN', yValue: 5, color: '#4bc0c0'}], lab: '# tag3'},
+        { w: 3, h: 3, title: '狀態', id: '67b57bad839cf7f31f9f921d', type: 5, dataset: [{xlabel: 'OK', yValue: 12, color: '#ff6384'}, {xlabel: 'WARNING', yValue: 19, color: '#36a2eb'}, {xlabel: 'CRITICAL', yValue: 3, color: '#ffce56'}, {xlabel: 'UNKNOWN', yValue: 5, color: '#4bc0c0'}], lab: '# tag4'},
+        { w: 3, h: 3, title: '狀態', id: '67b57bad839cf7f31f9f911d', type: 6, dataset: [{xlabel: 'Used', yValue: 63, color: '#ff6384'}, {xlabel: 'Free', yValue: 35, color: '#c0c0c0'}], lab: '# tag5'},
+        { w: 3, h: 2, title: '電壓', id: '67b57bad839cf7f31f9f922d', type: 0, dataset: [{xlabel: 'v', yValue: 112}]},
+        { w: 3, h: 1, title: '開關', id: '67b57bad839cf7f31f9f933d', type: 7, dataset: [{status: 'on'}] },
+        { w: 12, h: 5, title: 'MAP', id: '67b57bad839cf7f31f9f944d', type: 8, dataset: [{lat: 300, lng: 400, label: "標籤 1" }, { lat: 600, lng: 200, label: "標籤 2"}, { lat: 900, lng: 600, label: "標籤 3" }], base_img: 'https://www.nchu.edu.tw/map/nchu_map.png'},
+    ];
+
+    // 載入初始 Widget
+    initialItems.forEach(item => {
+        createCard(item.title, item.id, item.type)
+        .then(function(cardHtml){
+            //console.log(cardHtml);
+            let div = document.createElement("div");
+            div.classList.add("grid-stack-item");
+            div.setAttribute("data-id", `stack-${item.id}`);  // 這裡加在 grid-stack-item 層級
+            div.innerHTML = cardHtml;
+            //grid.makeWidget(div, { x: item.x, y: item.y, w: item.w, h: item.h, autoPosition: true });
+            grid.makeWidget(div, { w: item.w, h: item.h, autoPosition: true });
+            // **確保 DOM 更新後才執行 initChart()**
+            if(item.type == 0){
+                requestAnimationFrame(() => initRealData(`${item.id}`, JSON.stringify(item.dataset)));
+            }
+            else if(item.type == 1){
+                requestAnimationFrame(() => initBarChart(`chart-${item.id}`, JSON.stringify(item.dataset), item.lab));
+            }
+            else if(item.type == 2){
+                requestAnimationFrame(() => initLineChart(`chart-${item.id}`, JSON.stringify(item.dataset), item.lab));
+            }
+            else if(item.type == 3){
+                requestAnimationFrame(() => initMultiLineChart(`chart-${item.id}`, JSON.stringify(item.dataset) ));
+            }
+            else if(item.type == 4 || item.type == 5){
+                requestAnimationFrame(() => initPieChart(`chart-${item.id}`, JSON.stringify(item.dataset), item.lab, item.type ));
+            }
+            else if(item.type == 6){
+                requestAnimationFrame(() => initHalfDoughnutChart(`chart-${item.id}`, JSON.stringify(item.dataset), item.lab));
+            }
+            else if(item.type == 7){
+                requestAnimationFrame(() => controlSwitch(`switch-${item.id}`, JSON.stringify(item.dataset)));
+            }
+            else if(item.type == 8){
+                //requestAnimationFrame(() => map(`switch-${item.id}`, JSON.stringify(item.dataset)));
+                // leaflet.js 初始化地圖
+                var map = L.map(`map`, {
+                            crs: L.CRS.Simple, // 使用簡單座標系統
+                            zoom: 15,
+                            minZoom: -1,       // 允許縮小
+                            maxZoom: 4         // 允許放大
+                        });
+
+                // 設定圖片範圍
+                var bounds = [[0, 0], [1400, 1400]];
+                //var imageUrl = "https://www.oia.nchu.edu.tw/images/Image/02_Prospective_Students/2-5-Campus-Life/nchu_map1090220_tw.jpg";
+                var imageUrl = item.base_img;
+                var image = L.imageOverlay(imageUrl, bounds).addTo(map);
+                map.fitBounds(bounds);
+
+                // 預設 Marker 資料
+                let markersData = item.dataset;
+
+                // 新增 Marker
+                function addMarker(lat, lng, label) {
+                    var marker = L.marker([lat, lng], { draggable: true }).addTo(map);
+
+                    // 添加文字標籤
+                    marker.bindTooltip(label, { permanent: true, direction: "top" }).openTooltip();
+
+                    // 雙擊刪除 Marker
+                    marker.on('dblclick', function() {
+                        //進行後端的儲存
+                        map.removeLayer(marker);
+                    });
+
+                    // 拖曳後顯示新座標
+                    marker.on('dragend', function() {
+                         //進行後端的儲存
+                        var pos = marker.getLatLng();
+                        var labelText = marker.getTooltip().getContent(); // 取得標籤文字
+                        console.log(`Marker 移動 - 標籤: ${labelText}, x: ${pos.lat}, y: ${pos.lng}`);
+                    });
+
+                    return marker;
+                }
+
+                // 載入時自動加入 Marker
+                markersData.forEach(m => addMarker(m.lat, m.lng, m.label));
+                // 點擊地圖新增 Marker                
+                map.on('click', function(e) {
+                    var label = prompt("請輸入標籤文字", "新標籤");
+                    if (label) {
+                        addMarker(e.latlng.lat, e.latlng.lng, label);
+                    }
+                });                
+            }
+            $(`#warn-${item.id}`).show();  // 確認是否警告
+            //initChart(`chart-${item.id}`); //建立圖表
+        })
+        .catch(error => {
+            console.error("Error creating card:", error);
+        });
+    });
+
+    // 監聽拖曳與縮放事件
+    grid.on("change", function (event, items) {
+        items.forEach(function (item) {
+        	let chartId = item.el.getAttribute("data-id");  // 改用 getAttribute 確保取值
+            console.log(chartId);
+            console.log(`Chart ${chartId} - x: ${item.x}, y: ${item.y}, w: ${item.w}, h: ${item.h}`);
+            //儲存
+        });
+    });
+
+    // 移除 Widget**
+    window.removeWidget = function (button, db_id) {
+        let widget = button.closest(".grid-stack-item");
+        //console.log(widget);
+        //console.log(typeof widget);
+        //console.log("額外參數:", db_id);
+
+        if (widget) {
+            confirmDelWidget(widget, db_id);
+            //grid.removeWidget(widget); // GridStack 移除 Widget
+        }
+    };
+
+    window.addEventListener("resize", updateColumns);
+});
+
+{% endblock %}

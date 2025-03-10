@@ -1,0 +1,54 @@
+#version: '3.9'
+
+services:
+  mongo:
+    image: mongo:4.4.17
+    restart: always
+    environment:
+       MONGO_INITDB_ROOT_USERNAME: sinew
+       MONGO_INITDB_ROOT_PASSWORD: sinew3612
+       MONGO_INITDB_DATABASE: modbus_gateway
+    volumes:
+       - ./mongo/db:/data/db
+       - ./mongo/mongod.conf:/etc/mongod.conf
+    ports:
+       - 27017:27017
+#    network_mode: "host"
+    networks:
+       - ncs_net
+    command: mongod --auth -f /etc/mongod.conf
+  flask-api:
+    restart: always
+    build:
+       context: ./flask
+       dockerfile: Dockerfile
+    volumes:
+       - ./flask/app:/app
+#   network_mode: "host"
+    environment:
+       - MONGO_HOST=mongo
+       - MONGO_PORT=27017
+       - MONGO_DB=ncs
+       - MONGO_USERNAME=sinew
+       - MONGO_PASSWORD=sinew3612
+    ports:
+       - 5001:5000
+    networks:
+       - ncs_net
+    depends_on:
+       - mongo
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
+    ports:
+      - "80:80"
+    restart: always  
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html:ro
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro    
+volumes:
+  db:
+
+networks:
+  ncs_net:
+   driver: bridge

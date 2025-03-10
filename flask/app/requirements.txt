@@ -1,0 +1,12 @@
+Flask
+Flask-Login
+gunicorn
+pathlib
+Werkzeug
+jsonify
+requests
+pymongo
+flask-cors
+pandas
+flasgger
+openpyxl

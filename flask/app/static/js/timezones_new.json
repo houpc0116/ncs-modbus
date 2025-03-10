@@ -1,0 +1,506 @@
+[
+    {
+        "label": "Asia/Amman (GMT+02:00)",
+        "tzCode": "Asia/Amman",
+        "name": "(GMT+02:00) Amman, Zarqa, Irbid, Russeifa, Wādī as Sīr",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Beirut (GMT+02:00)",
+        "tzCode": "Asia/Beirut",
+        "name": "(GMT+02:00) Beirut, Ra’s Bayrūt, Tripoli, Sidon, Tyre",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Damascus (GMT+02:00)",
+        "tzCode": "Asia/Damascus",
+        "name": "(GMT+02:00) Aleppo, Damascus, Homs, Ḩamāh, Latakia",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Famagusta (GMT+02:00)",
+        "tzCode": "Asia/Famagusta",
+        "name": "(GMT+02:00) Famagusta, Kyrenia, Protaras, Paralímni, Lápithos",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Gaza (GMT+02:00)",
+        "tzCode": "Asia/Gaza",
+        "name": "(GMT+02:00) Gaza, Khān Yūnis, Jabālyā, Rafaḩ, Dayr al Balaḩ",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Hebron (GMT+02:00)",
+        "tzCode": "Asia/Hebron",
+        "name": "(GMT+02:00) East Jerusalem, Hebron, Nablus, Battir, Ţūlkarm",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Jerusalem (GMT+02:00)",
+        "tzCode": "Asia/Jerusalem",
+        "name": "(GMT+02:00) Jerusalem, Tel Aviv, West Jerusalem, Haifa, Ashdod",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Nicosia (GMT+02:00)",
+        "tzCode": "Asia/Nicosia",
+        "name": "(GMT+02:00) Nicosia, Limassol, Larnaca, Stróvolos, Paphos",
+        "utc": "+02:00"
+    },
+    {
+        "label": "Asia/Aden (GMT+03:00)",
+        "tzCode": "Asia/Aden",
+        "name": "(GMT+03:00) Sanaa, Al Ḩudaydah, Taiz, Aden, Mukalla",
+        "utc": "+03:00"
+    },
+    {
+        "label": "Asia/Baghdad (GMT+03:00)",
+        "tzCode": "Asia/Baghdad",
+        "name": "(GMT+03:00) Baghdad, Basrah, Al Mawşil al Jadīdah, Al Başrah al Qadīmah, Mosul",
+        "utc": "+03:00"
+    },
+    {
+        "label": "Asia/Bahrain (GMT+03:00)",
+        "tzCode": "Asia/Bahrain",
+        "name": "(GMT+03:00) Manama, Al Muharraq, Ar Rifā‘, Dār Kulayb, Madīnat Ḩamad",
+        "utc": "+03:00"
+    },
+    {
+        "label": "Asia/Kuwait (GMT+03:00)",
+        "tzCode": "Asia/Kuwait",
+        "name": "(GMT+03:00) Al Aḩmadī, Ḩawallī, As Sālimīyah, Şabāḩ as Sālim, Al Farwānīyah",
+        "utc": "+03:00"
+    },
+    {
+        "label": "Asia/Qatar (GMT+03:00)",
+        "tzCode": "Asia/Qatar",
+        "name": "(GMT+03:00) Doha, Ar Rayyān, Umm Şalāl Muḩammad, Al Wakrah, Al Khawr",
+        "utc": "+03:00"
+    },
+    {
+        "label": "Asia/Riyadh (GMT+03:00)",
+        "tzCode": "Asia/Riyadh",
+        "name": "(GMT+03:00) Riyadh, Jeddah, Mecca, Medina, Sulţānah",
+        "utc": "+03:00"
+    },
+    {
+        "label": "Asia/Tehran (GMT+03:30)",
+        "tzCode": "Asia/Tehran",
+        "name": "(GMT+03:30) Tehran, Mashhad, Isfahan, Karaj, Tabriz",
+        "utc": "+03:30"
+    },
+    {
+        "label": "Asia/Baku (GMT+04:00)",
+        "tzCode": "Asia/Baku",
+        "name": "(GMT+04:00) Baku, Ganja, Sumqayıt, Lankaran, Yevlakh",
+        "utc": "+04:00"
+    },
+    {
+        "label": "Asia/Dubai (GMT+04:00)",
+        "tzCode": "Asia/Dubai",
+        "name": "(GMT+04:00) Dubai, Sharjah, Abu Dhabi, Ajman City, Ras Al Khaimah City",
+        "utc": "+04:00"
+    },
+    {
+        "label": "Asia/Muscat (GMT+04:00)",
+        "tzCode": "Asia/Muscat",
+        "name": "(GMT+04:00) Muscat, Seeb, Şalālah, Bawshar, Sohar",
+        "utc": "+04:00"
+    },
+    {
+        "label": "Asia/Tbilisi (GMT+04:00)",
+        "tzCode": "Asia/Tbilisi",
+        "name": "(GMT+04:00) Tbilisi, Kutaisi, Batumi, Sokhumi, Zugdidi",
+        "utc": "+04:00"
+    },
+    {
+        "label": "Asia/Yerevan (GMT+04:00)",
+        "tzCode": "Asia/Yerevan",
+        "name": "(GMT+04:00) Yerevan, Gyumri, Vanadzor, Vagharshapat, Hrazdan",
+        "utc": "+04:00"
+    },
+    {
+        "label": "Asia/Kabul (GMT+04:30)",
+        "tzCode": "Asia/Kabul",
+        "name": "(GMT+04:30) Kabul, Kandahār, Mazār-e Sharīf, Herāt, Jalālābād",
+        "utc": "+04:30"
+    },
+    {
+        "label": "Antarctica/Mawson (GMT+05:00)",
+        "tzCode": "Antarctica/Mawson",
+        "name": "(GMT+05:00) Mawson",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Aqtau (GMT+05:00)",
+        "tzCode": "Asia/Aqtau",
+        "name": "(GMT+05:00) Shevchenko, Zhanaozen, Beyneu, Shetpe, Yeraliyev",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Aqtobe (GMT+05:00)",
+        "tzCode": "Asia/Aqtobe",
+        "name": "(GMT+05:00) Aktobe, Kandyagash, Shalqar, Khromtau, Embi",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Ashgabat (GMT+05:00)",
+        "tzCode": "Asia/Ashgabat",
+        "name": "(GMT+05:00) Ashgabat, Türkmenabat, Daşoguz, Mary, Balkanabat",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Atyrau (GMT+05:00)",
+        "tzCode": "Asia/Atyrau",
+        "name": "(GMT+05:00) Atyrau, Qulsary, Shalkar, Balykshi, Maqat",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Dushanbe (GMT+05:00)",
+        "tzCode": "Asia/Dushanbe",
+        "name": "(GMT+05:00) Dushanbe, Khujand, Kŭlob, Bokhtar, Istaravshan",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Karachi (GMT+05:00)",
+        "tzCode": "Asia/Karachi",
+        "name": "(GMT+05:00) Karachi, Lahore, Faisalabad, Rawalpindi, Multan",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Oral (GMT+05:00)",
+        "tzCode": "Asia/Oral",
+        "name": "(GMT+05:00) Oral, Aqsay, Zhänibek, Tasqala, Zhumysker",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Qyzylorda (GMT+05:00)",
+        "tzCode": "Asia/Qyzylorda",
+        "name": "(GMT+05:00) Kyzylorda, Baikonur, Novokazalinsk, Aral, Chiili",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Samarkand (GMT+05:00)",
+        "tzCode": "Asia/Samarkand",
+        "name": "(GMT+05:00) Samarkand, Bukhara, Nukus, Qarshi, Jizzax",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Tashkent (GMT+05:00)",
+        "tzCode": "Asia/Tashkent",
+        "name": "(GMT+05:00) Tashkent, Namangan, Andijon, Qo‘qon, Chirchiq",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Yekaterinburg (GMT+05:00)",
+        "tzCode": "Asia/Yekaterinburg",
+        "name": "(GMT+05:00) Yekaterinburg, Chelyabinsk, Ufa, Perm, Orenburg",
+        "utc": "+05:00"
+    },
+    {
+        "label": "Asia/Colombo (GMT+05:30)",
+        "tzCode": "Asia/Colombo",
+        "name": "(GMT+05:30) Colombo, Dehiwala-Mount Lavinia, Moratuwa, Jaffna, Negombo",
+        "utc": "+05:30"
+    },
+    {
+        "label": "Asia/Kolkata (GMT+05:30)",
+        "tzCode": "Asia/Kolkata",
+        "name": "(GMT+05:30) Mumbai, Delhi, Bengaluru, Kolkata, Chennai",
+        "utc": "+05:30"
+    },
+    {
+        "label": "Asia/Kathmandu (GMT+05:45)",
+        "tzCode": "Asia/Kathmandu",
+        "name": "(GMT+05:45) Kathmandu, Pokhara, Pātan, Biratnagar, Birgañj",
+        "utc": "+05:45"
+    },
+    {
+        "label": "Asia/Almaty (GMT+06:00)",
+        "tzCode": "Asia/Almaty",
+        "name": "(GMT+06:00) Almaty, Karagandy, Shymkent, Taraz, Nur-Sultan",
+        "utc": "+06:00"
+    },
+    {
+        "label": "Asia/Bishkek (GMT+06:00)",
+        "tzCode": "Asia/Bishkek",
+        "name": "(GMT+06:00) Bishkek, Osh, Jalal-Abad, Karakol, Tokmok",
+        "utc": "+06:00"
+    },
+    {
+        "label": "Asia/Dhaka (GMT+06:00)",
+        "tzCode": "Asia/Dhaka",
+        "name": "(GMT+06:00) Dhaka, Chattogram, Khulna, Rājshāhi, Comilla",
+        "utc": "+06:00"
+    },
+    {
+        "label": "Asia/Omsk (GMT+06:00)",
+        "tzCode": "Asia/Omsk",
+        "name": "(GMT+06:00) Omsk, Tara, Kalachinsk, Znamenskoye, Tavricheskoye",
+        "utc": "+06:00"
+    },
+    {
+        "label": "Asia/Qostanay (GMT+06:00)",
+        "tzCode": "Asia/Qostanay",
+        "name": "(GMT+06:00) Kostanay, Rudnyy, Dzhetygara, Arkalyk, Lisakovsk",
+        "utc": "+06:00"
+    },
+    {
+        "label": "Asia/Thimphu (GMT+06:00)",
+        "tzCode": "Asia/Thimphu",
+        "name": "(GMT+06:00) himphu, Punākha, Tsirang, Phuntsholing, Pemagatshel",
+        "utc": "+06:00"
+    },
+    {
+        "label": "Asia/Urumqi (GMT+06:00)",
+        "tzCode": "Asia/Urumqi",
+        "name": "(GMT+06:00) Zhongshan, Ürümqi, Zhanjiang, Shihezi, Huocheng",
+        "utc": "+06:00"
+    },
+    {
+        "label": "Asia/Yangon (GMT+06:30)",
+        "tzCode": "Asia/Yangon",
+        "name": "(GMT+06:30) Yangon, Mandalay, Nay Pyi Taw, Mawlamyine, Kyain Seikgyi Township",
+        "utc": "+06:30"
+    },
+    {
+        "label": "Asia/Bangkok (GMT+07:00)",
+        "tzCode": "Asia/Bangkok",
+        "name": "(GMT+07:00) Bangkok, Hanoi, Haiphong, Samut Prakan, Mueang Nonthaburi",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Barnaul (GMT+07:00)",
+        "tzCode": "Asia/Barnaul",
+        "name": "(GMT+07:00) Barnaul, Biysk, Rubtsovsk, Novoaltaysk, Gorno-Altaysk",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Hovd (GMT+07:00)",
+        "tzCode": "Asia/Hovd",
+        "name": "(GMT+07:00) Khovd, Ölgii, Ulaangom, Uliastay, Altai",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Ho_Chi_Minh (GMT+07:00)",
+        "tzCode": "Asia/Ho_Chi_Minh",
+        "name": "(GMT+07:00) Ho Chi Minh City, Da Nang, Biên Hòa, Nha Trang, Cần Thơ",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Jakarta (GMT+07:00)",
+        "tzCode": "Asia/Jakarta",
+        "name": "(GMT+07:00) Jakarta, Surabaya, Medan, Bandung, Bekasi",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Krasnoyarsk (GMT+07:00)",
+        "tzCode": "Asia/Krasnoyarsk",
+        "name": "(GMT+07:00) Krasnoyarsk, Abakan, Norilsk, Achinsk, Kyzyl",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Novokuznetsk (GMT+07:00)",
+        "tzCode": "Asia/Novokuznetsk",
+        "name": "(GMT+07:00) Novokuznetsk, Kemerovo, Prokop’yevsk, Leninsk-Kuznetsky, Kiselëvsk",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Novosibirsk (GMT+07:00)",
+        "tzCode": "Asia/Novosibirsk",
+        "name": "(GMT+07:00) Novosibirsk, Berdsk, Iskitim, Akademgorodok, Kuybyshev",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Phnom_Penh (GMT+07:00)",
+        "tzCode": "Asia/Phnom_Penh",
+        "name": "(GMT+07:00) Phnom Penh, Takeo, Sihanoukville, Battambang, Siem Reap",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Pontianak (GMT+07:00)",
+        "tzCode": "Asia/Pontianak",
+        "name": "(GMT+07:00) Pontianak, Tanjung Pinang, Palangkaraya, Singkawang, Sampit",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Tomsk (GMT+07:00)",
+        "tzCode": "Asia/Tomsk",
+        "name": "(GMT+07:00) Tomsk, Seversk, Strezhevoy, Kolpashevo, Asino",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Vientiane (GMT+07:00)",
+        "tzCode": "Asia/Vientiane",
+        "name": "(GMT+07:00) Vientiane, Pakse, Thakhèk, Savannakhet, Luang Prabang",
+        "utc": "+07:00"
+    },
+    {
+        "label": "Asia/Brunei (GMT+08:00)",
+        "tzCode": "Asia/Brunei",
+        "name": "(GMT+08:00) Bandar Seri Begawan, Kuala Belait, Seria, Tutong, Bangar",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Choibalsan (GMT+08:00)",
+        "tzCode": "Asia/Choibalsan",
+        "name": "(GMT+08:00) Baruun-Urt, Choibalsan",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Hong_Kong (GMT+08:00)",
+        "tzCode": "Asia/Hong_Kong",
+        "name": "(GMT+08:00) Hong Kong, Kowloon, Tsuen Wan, Yuen Long Kau Hui, Tung Chung",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Irkutsk (GMT+08:00)",
+        "tzCode": "Asia/Irkutsk",
+        "name": "(GMT+08:00) Irkutsk, Ulan-Ude, Bratsk, Angarsk, Ust’-Ilimsk",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Kuala_Lumpur (GMT+08:00)",
+        "tzCode": "Asia/Kuala_Lumpur",
+        "name": "(GMT+08:00) Kota Bharu, Kuala Lumpur, Klang, Kampung Baru Subang, Johor Bahru",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Kuching (GMT+08:00)",
+        "tzCode": "Asia/Kuching",
+        "name": "(GMT+08:00) Kuching, Kota Kinabalu, Sandakan, Tawau, Miri",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Macau (GMT+08:00)",
+        "tzCode": "Asia/Macau",
+        "name": "(GMT+08:00) Macau",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Makassar (GMT+08:00)",
+        "tzCode": "Asia/Makassar",
+        "name": "(GMT+08:00) Makassar, Denpasar, City of Balikpapan, Banjarmasin, Manado",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Manila (GMT+08:00)",
+        "tzCode": "Asia/Manila",
+        "name": "(GMT+08:00) Quezon City, Manila, Caloocan City, Budta, Davao",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Shanghai (GMT+08:00)",
+        "tzCode": "Asia/Shanghai",
+        "name": "(GMT+08:00) Shanghai, Beijing, Tianjin, Guangzhou, Shenzhen",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Singapore (GMT+08:00)",
+        "tzCode": "Asia/Singapore",
+        "name": "(GMT+08:00) Singapore, Woodlands",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Taipei (GMT+08:00)",
+        "tzCode": "Asia/Taipei",
+        "name": "(GMT+08:00) Taipei, Kaohsiung, Taichung, Tainan, Banqiao",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Ulaanbaatar (GMT+08:00)",
+        "tzCode": "Asia/Ulaanbaatar",
+        "name": "(GMT+08:00) Ulan Bator, Erdenet, Darhan, Hovd, Mörön",
+        "utc": "+08:00"
+    },
+    {
+        "label": "Asia/Chita (GMT+09:00)",
+        "tzCode": "Asia/Chita",
+        "name": "(GMT+09:00) Chita, Krasnokamensk, Borzya, Petrovsk-Zabaykal’skiy, Aginskoye",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Dili (GMT+09:00)",
+        "tzCode": "Asia/Dili",
+        "name": "(GMT+09:00) Dili, Maliana, Suai, Likisá, Aileu",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Jayapura (GMT+09:00)",
+        "tzCode": "Asia/Jayapura",
+        "name": "(GMT+09:00) Ambon, Jayapura, Sorong, Ternate, Abepura",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Khandyga (GMT+09:00)",
+        "tzCode": "Asia/Khandyga",
+        "name": "(GMT+09:00) Khandyga",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Pyongyang (GMT+09:00)",
+        "tzCode": "Asia/Pyongyang",
+        "name": "(GMT+09:00) Pyongyang, Hamhŭng, Namp’o, Sunch’ŏn, Hŭngnam",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Seoul (GMT+09:00)",
+        "tzCode": "Asia/Seoul",
+        "name": "(GMT+09:00) Seoul, Busan, Incheon, Daegu, Daejeon",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Tokyo (GMT+09:00)",
+        "tzCode": "Asia/Tokyo",
+        "name": "(GMT+09:00) Tokyo, Yokohama, Osaka, Nagoya, Sapporo",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Yakutsk (GMT+09:00)",
+        "tzCode": "Asia/Yakutsk",
+        "name": "(GMT+09:00) Yakutsk, Blagoveshchensk, Belogorsk, Neryungri, Svobodnyy",
+        "utc": "+09:00"
+    },
+    {
+        "label": "Asia/Ust-Nera (GMT+10:00)",
+        "tzCode": "Asia/Ust-Nera",
+        "name": "(GMT+10:00) Ust-Nera",
+        "utc": "+10:00"
+    },
+    {
+        "label": "Asia/Vladivostok (GMT+10:00)",
+        "tzCode": "Asia/Vladivostok",
+        "name": "(GMT+10:00) Vladivostok, Khabarovsk, Khabarovsk Vtoroy, Komsomolsk-on-Amur, Ussuriysk",
+        "utc": "+10:00"
+    },
+    {
+        "label": "Asia/Magadan (GMT+11:00)",
+        "tzCode": "Asia/Magadan",
+        "name": "(GMT+11:00) Magadan, Ust-Nera, Susuman, Ola",
+        "utc": "+11:00"
+    },
+    {
+        "label": "Asia/Sakhalin (GMT+11:00)",
+        "tzCode": "Asia/Sakhalin",
+        "name": "(GMT+11:00) Yuzhno-Sakhalinsk, Korsakov, Kholmsk, Okha, Nevel’sk",
+        "utc": "+11:00"
+    },
+    {
+        "label": "Asia/Srednekolymsk (GMT+11:00)",
+        "tzCode": "Asia/Srednekolymsk",
+        "name": "(GMT+11:00) Srednekolymsk",
+        "utc": "+11:00"
+    },
+    {
+        "label": "Asia/Anadyr (GMT+12:00)",
+        "tzCode": "Asia/Anadyr",
+        "name": "(GMT+12:00) Anadyr, Bilibino",
+        "utc": "+12:00"
+    },
+    {
+        "label": "Asia/Kamchatka (GMT+12:00)",
+        "tzCode": "Asia/Kamchatka",
+        "name": "(GMT+12:00) Petropavlovsk-Kamchatsky, Yelizovo, Vilyuchinsk, Klyuchi, Mil’kovo",
+        "utc": "+12:00"
+    }
+]
