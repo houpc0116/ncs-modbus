@@ -283,7 +283,25 @@
   background-color: #ff8300;
 }
 
-#map { width: 100vw; height: 80vh; border: 1px solid #ccc; }
+/* 地圖 */
+.map {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ccc;
+    overflow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-xl {
+    max-width: 85vw!important;
+}
+
+.modal1 {
+    max-width: 65vw!important;
+}
+
 
 {% endblock %}
 
@@ -307,7 +325,7 @@
             <i class="fa fa-plus" aria-hidden="true"></i>
             新增頁籤
         </button>
-        <button class="btn btn-outline-primary room-button mx-2 mt-2" onclick="">
+        <button class="btn btn-outline-primary room-button mx-2 mt-2" onclick="createWidget()">
             <i class="fa fa-plus" aria-hidden="true"></i>
             新增Widget
         </button>
@@ -372,10 +390,16 @@ Chart.register(ChartDataLabels);
 
 var data = {{ data['page'] | tojson }}; //取出目前Scene 資訊, 轉成JSON格式
 //console.log(data);
+var map;
+var map1; // 新增地圖
+var bounds = [];
+var bounds1 = []; // 新增地圖
+var markersData = [];
+var isMapInitialized = false; // 標記地圖是否已載入
 
 
 window.addEventListener('pageshow', (event) => { //
-    console.log('ready');
+    //console.log('ready');
     // 初始化 GridStack
     const grid = GridStack.init({
         column: 12, // 12 列的網格
@@ -384,8 +408,9 @@ window.addEventListener('pageshow', (event) => { //
         float: true,
         zoomSnap: 3,
         //resizable: true,
-        draggable: true,
-        resizable: { handles: "e, se, s, sw, w" }, // 允許調整大小
+        draggable: true
+        //disableResize: true   //關閉縮放大小
+        //resizable: { handles: "e, se, s, sw, w" }, // 允許調整大小
     });
 
     // 預設載入的 GridStack 項目, data Point
@@ -404,7 +429,8 @@ window.addEventListener('pageshow', (event) => { //
         { w: 3, h: 3, title: '狀態', id: '67b57bad839cf7f31f9f911d', type: 6, dataset: [{xlabel: 'Used', yValue: 63, color: '#ff6384'}, {xlabel: 'Free', yValue: 35, color: '#c0c0c0'}], lab: '# tag5'},
         { w: 3, h: 2, title: '電壓', id: '67b57bad839cf7f31f9f922d', type: 0, dataset: [{xlabel: 'v', yValue: 112}]},
         { w: 3, h: 1, title: '開關', id: '67b57bad839cf7f31f9f933d', type: 7, dataset: [{status: 'on'}] },
-        { w: 12, h: 5, title: 'MAP', id: '67b57bad839cf7f31f9f944d', type: 8, dataset: [{lat: 300, lng: 400, label: "標籤 1" }, { lat: 600, lng: 200, label: "標籤 2"}, { lat: 900, lng: 600, label: "標籤 3" }], base_img: 'https://www.nchu.edu.tw/map/nchu_map.png'},
+        { w: 12, h: 4, title: 'MAP', id: '67b57bad839cf7f31f9f944d', type: 8, dataset: [{lat: 300, lng: 400, label: "標籤 1" }, { lat: 600, lng: 200, label: "標籤 2"}, { lat: 900, lng: 600, label: "標籤 3" }], base_img: 'https://www.nchu.edu.tw/map/nchu_map.png'},
+        { w: 6, h: 4, title: 'MAP', id: '67b57bad839cf7f31f9f914d', type: 8, dataset: [{lat: 300, lng: 400, label: "標籤 1" }, { lat: 600, lng: 200, label: "標籤 2"}, { lat: 774, lng: 1010, label: "標籤 3" }], base_img: 'https://www.nchu.edu.tw/map/nchu_map.png'}
     ];
 
     // 載入初始 Widget
@@ -415,9 +441,22 @@ window.addEventListener('pageshow', (event) => { //
             let div = document.createElement("div");
             div.classList.add("grid-stack-item");
             div.setAttribute("data-id", `stack-${item.id}`);  // 這裡加在 grid-stack-item 層級
+            //div.setAttribute("style", "border: 1px solid #ff0000;");
             div.innerHTML = cardHtml;
+            //console.log(div);
             //grid.makeWidget(div, { x: item.x, y: item.y, w: item.w, h: item.h, autoPosition: true });
+
             grid.makeWidget(div, { w: item.w, h: item.h, autoPosition: true });
+
+            // 額外在 GridStack 設定，確保 type == 8 的 Widget 無法縮放
+            if (item.type == 8) {
+                let gridItem = grid.getGridItems().find(el => el.dataset.id === `stack-${item.id}`);
+                //console.log(gridItem);
+                if (gridItem) {
+                    grid.update(gridItem, { noResize: true });
+                }
+            }
+
             // **確保 DOM 更新後才執行 initChart()**
             if(item.type == 0){
                 requestAnimationFrame(() => initRealData(`${item.id}`, JSON.stringify(item.dataset)));
@@ -443,22 +482,32 @@ window.addEventListener('pageshow', (event) => { //
             else if(item.type == 8){
                 //requestAnimationFrame(() => map(`switch-${item.id}`, JSON.stringify(item.dataset)));
                 // leaflet.js 初始化地圖
-                var map = L.map(`map`, {
+                map = L.map(`map-${item.id}`, {
                             crs: L.CRS.Simple, // 使用簡單座標系統
-                            zoom: 15,
-                            minZoom: -1,       // 允許縮小
-                            maxZoom: 4         // 允許放大
+                            minZoom: -1,       // 可縮小多級
+                            maxZoom: 4,
+                            zoomSnap: 0.5,     // 縮放時更平滑
+                            zoomControl: false,    // 禁用縮放按鈕
+                            dragging: true,       // 禁止地圖拖曳
+                            scrollWheelZoom: true, // 滑鼠滾輪縮放
+                            doubleClickZoom: false, // 禁止雙擊縮放
+                            touchZoom: false        // 禁止觸控縮放
                         });
 
+
                 // 設定圖片範圍
-                var bounds = [[0, 0], [1400, 1400]];
+                console.log(getMapBounds(map) );
+                bounds = [[0, 0], [1424, 1741]];   //圖片大小 (y, x)
+                //let bounds = getMapBounds();
                 //var imageUrl = "https://www.oia.nchu.edu.tw/images/Image/02_Prospective_Students/2-5-Campus-Life/nchu_map1090220_tw.jpg";
-                var imageUrl = item.base_img;
-                var image = L.imageOverlay(imageUrl, bounds).addTo(map);
+                let imageUrl = item.base_img;
+                let image = L.imageOverlay(imageUrl, bounds, { keepAspectRatio: true }).addTo(map);  // keepAspectRatio 按比例縮放圖片
                 map.fitBounds(bounds);
+                console.log('map:'+map.getSize());
+                //map.dragging.disable(); // 禁止地圖拖曳
 
                 // 預設 Marker 資料
-                let markersData = item.dataset;
+                markersData = item.dataset;
 
                 // 新增 Marker
                 function addMarker(lat, lng, label) {
@@ -466,7 +515,8 @@ window.addEventListener('pageshow', (event) => { //
 
                     // 添加文字標籤
                     marker.bindTooltip(label, { permanent: true, direction: "top" }).openTooltip();
-
+                    marker.dragging.disable(); // 讓 Marker 變成不可拖曳
+                    /*
                     // 雙擊刪除 Marker
                     marker.on('dblclick', function() {
                         //進行後端的儲存
@@ -480,20 +530,32 @@ window.addEventListener('pageshow', (event) => { //
                         var labelText = marker.getTooltip().getContent(); // 取得標籤文字
                         console.log(`Marker 移動 - 標籤: ${labelText}, x: ${pos.lat}, y: ${pos.lng}`);
                     });
+                    */
 
                     return marker;
                 }
 
                 // 載入時自動加入 Marker
                 markersData.forEach(m => addMarker(m.lat, m.lng, m.label));
-                // 點擊地圖新增 Marker                
+                /*
+                // 當視窗大小改變時，重新計算 bounds 來適應 div
+                window.addEventListener('resize', function() {
+                  var newBounds = getMapBounds();
+                  image.setBounds(newBounds);
+                  map.fitBounds(newBounds);
+                });
+                */
+                // 點擊地圖新增 Marker
+                /*
                 map.on('click', function(e) {
                     var label = prompt("請輸入標籤文字", "新標籤");
                     if (label) {
                         addMarker(e.latlng.lat, e.latlng.lng, label);
                     }
-                });                
+                });
+                */
             }
+
             $(`#warn-${item.id}`).show();  // 確認是否警告
             //initChart(`chart-${item.id}`); //建立圖表
         })
@@ -502,6 +564,7 @@ window.addEventListener('pageshow', (event) => { //
         });
     });
 
+
     // 監聽拖曳與縮放事件
     grid.on("change", function (event, items) {
         items.forEach(function (item) {
@@ -509,7 +572,14 @@ window.addEventListener('pageshow', (event) => { //
             console.log(chartId);
             console.log(`Chart ${chartId} - x: ${item.x}, y: ${item.y}, w: ${item.w}, h: ${item.h}`);
             //儲存
+
         });
+    });
+
+    // 針對特定 item 禁用縮放
+    grid.getGridItems().forEach(item => {
+        //grid.disableResize(item); // 禁止縮放該 item
+        console.log(item);
     });
 
     // 移除 Widget**
@@ -525,7 +595,16 @@ window.addEventListener('pageshow', (event) => { //
         }
     };
 
-    window.addEventListener("resize", updateColumns);
+    window.addEventListener("resize", updateMapSize);
+
+    // 監聽 modal
+    $('#showModal').on('hidden.bs.modal', function (e) {
+        // do something...
+        console.log('close');
+        isMapInitialized = false; // 標記地圖是否已載入
+        map1.remove(); // 移除地圖
+        map1 = null;   // 清除變數
+    })
 });
 
 {% endblock %}
